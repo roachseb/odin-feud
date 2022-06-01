@@ -101,7 +101,7 @@ const app = new App({
         question: "Which language should you rewrite something in?",
         answers: [
           {
-            text: "Rust",
+              text: "Rust",
             money: 17
           },
           {
