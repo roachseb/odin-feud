@@ -14,6 +14,10 @@ const app = new App({
         question: "Which programing language is dead?",
         answers: [
           {
+            text: "Neptune",
+            money: 1000
+          },
+          {
             text: "Perl",
             money: 17
           },
@@ -33,10 +37,6 @@ const app = new App({
             text: "Ruby",
             money: 3
           },
-          {
-            text: "Elm",
-            money: 1
-          }
         ]
       },
       {
