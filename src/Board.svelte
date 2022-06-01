@@ -2,12 +2,11 @@
   (C) 2020 David Lettier
   lettier.com
 -->
-
 <script>
-  import Bank     from './Bank.svelte';
-  import Team     from './Team.svelte';
-  import Question from './Question.svelte';
-  import Answer   from './Answer.svelte';
+  import Bank from "./Bank.svelte";
+  import Team from "./Team.svelte";
+  import Question from "./Question.svelte";
+  import Answer from "./Answer.svelte";
 
   export let qa;
   export let bankMoney = 0;
@@ -16,6 +15,41 @@
 
   $: answers = qa.answers;
 </script>
+
+<div id="board" class="board-container">
+  <div class="board">
+    <div>
+      <Team money={teamMoney[0]} />
+    </div>
+    <div class="board-middle">
+      <div class="row-center">
+        <Bank money={bankMoney} />
+      </div>
+      <div class="row-center">
+        <Question question={qa.question} />
+      </div>
+      <div class="answers">
+        {#each answers as answer}
+          <Answer {answer} />
+        {/each}
+      </div>
+      <div class="row-center">
+        <div class="strikes">
+          {#each strikes as strike}
+            <div class="strike">
+              {strike}
+            </div>
+          {:else}
+            <div class="strike strike-hidden">☐</div>
+          {/each}
+        </div>
+      </div>
+    </div>
+    <div>
+      <Team money={teamMoney[1]} />
+    </div>
+  </div>
+</div>
 
 <style>
   .board-container {
@@ -80,40 +114,3 @@
     flex-flow: row;
   }
 </style>
-
-<div id="board" class="board-container">
-  <div class="board">
-    <div>
-      <Team money={teamMoney[0]}/>
-    </div>
-    <div class="board-middle">
-      <div class="row-center">
-        <Bank money={bankMoney}/>
-      </div>
-      <div class="row-center">
-        <Question question={qa.question}/>
-      </div>
-      <div class="answers">
-        {#each answers as answer}
-          <Answer {answer}/>
-        {/each}
-      </div>
-      <div class="row-center">
-        <div class="strikes">
-          {#each strikes as strike}
-            <div class="strike">
-              {strike}
-            </div>
-          {:else}
-            <div class="strike strike-hidden">
-              ☐
-            </div>
-          {/each}
-        </div>
-      </div>
-    </div>
-    <div>
-      <Team money={teamMoney[1]}/>
-    </div>
-  </div>
-</div>

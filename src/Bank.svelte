@@ -2,10 +2,15 @@
   (C) 2020 David Lettier
   lettier.com
 -->
-
 <script>
   export let money = 0;
 </script>
+
+<div class="bank">
+  <div>
+    {money}
+  </div>
+</div>
 
 <style>
   .bank {
@@ -22,9 +27,3 @@
     flex-flow: row;
   }
 </style>
-
-<div class="bank">
-  <div>
-    {money}
-  </div>
-</div>

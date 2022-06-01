@@ -2,31 +2,44 @@
   (C) 2020 David Lettier
   lettier.com
 -->
-
 <script>
-  import Board from './Board.svelte';
-  import Guess from './Guess.svelte';
+  import Board from "./Board.svelte";
+  import Guess from "./Guess.svelte";
+
+  import Function from "./Function.svelte";
 
   export let qas = [];
-  export let teamNames = ['', ''];
+  export let teamNames = ["", ""];
+
+  import { onMount } from "svelte";
+
+  const apiURL =
+    "http://www.7timer.info/bin/api.pl?lon=113.17&lat=23.09&product=astro&output=json";
+  export let props = {};
+  onMount(async function () {
+    const response = await fetch(apiURL);
+    props = await response.json();
+  });
+
 
   let qaIndex = 0;
+  let FunctionLib;
 
-  let showMessage   = false;
-  let start         = false;
-  let faceOff       = false;
-  let showPass      = false;
-  let teamDisable   = [false, false];
-  let steal         = false
-  let next          = false;
-  let end           = false;
+  let showMessage = false;
+  let start = false;
+  let faceOff = false;
+  let showPass = false;
+  let teamDisable = [false, false];
+  let steal = false;
+  let next = false;
+  let end = false;
 
   let messageTimeout = null;
 
   let currentTeam = -1;
 
-  let guess   = '';
-  let message = '';
+  let guess = "";
+  let message = "";
 
   let bankMoney = 0;
   let teamMoney = [0, 0];
@@ -57,17 +70,19 @@
     messageTimeout = null;
     message = text;
     showMessage = true;
-    if (seconds <= 0) { return; }
+    if (seconds <= 0) {
+      return;
+    }
     messageTimeout = setTimeout(() => {
-      message     = '';
+      message = "";
       showMessage = false;
     }, seconds * 1000);
   }
 
   function setAnswerVisibility(show) {
-    let answers = qas[qaIndex].answers.map(answer => {
+    let answers = qas[qaIndex].answers.map((answer) => {
       answer.show = show;
-      return answer
+      return answer;
     });
 
     qas[qaIndex].answers = answers;
@@ -78,8 +93,10 @@
     let answers = qas[qaIndex].answers;
     let length = answers.length;
     for (let i = 0; i < length; ++i) {
-      let answer = answers[i]
-      if (answer.show) { shown += 1; }
+      let answer = answers[i];
+      if (answer.show) {
+        shown += 1;
+      }
     }
 
     return shown === length;
@@ -87,8 +104,11 @@
 
   function startGame() {
     faceOff = true;
-    start   = true;
-    displayMessage("Face off! First team to call out their answer goes first.", 4);
+    start = true;
+    displayMessage(
+      "Face off! First team to call out their answer goes first.",
+      4
+    );
   }
 
   function handleGuess(e) {
@@ -104,11 +124,19 @@
     let length = answers.length;
 
     for (let i = 0; i < length; ++i) {
-      let answer = answers[i]
-      match = answer.text.toLowerCase() === guess.toLowerCase();
+      let answer = answers[i];
+
+      match =
+        FunctionLib.leveinsteinerDistance(
+          answer.text.toLowerCase(),
+          guess.toLowerCase()
+        ) <= 1;
+
       if (match) {
-        if (answer.show) { break; }
-        money = answer.money
+        if (answer.show) {
+          break;
+        }
+        money = answer.money;
         answer.show = true;
         break;
       }
@@ -123,7 +151,7 @@
     }
 
     if (allShown()) {
-      teamMoney[currentTeam] += (bankMoney + money);
+      teamMoney[currentTeam] += bankMoney + money;
       bankMoney = 0;
       next = true;
       setAnimation(true);
@@ -145,19 +173,24 @@
           teamDisable[1] = true;
         }
 
-        displayMessage("Team " + teamNames[currentTeam] + " wins the face off! Wanna pass?", 6);
+        displayMessage(
+          "Team " + teamNames[currentTeam] + " wins the face off! Wanna pass?",
+          6
+        );
 
-        faceOff   = false;
+        faceOff = false;
         bankMoney = money;
-        showPass  = true;
+        showPass = true;
       }
     } else if (steal) {
       if (!match) {
-        currentTeam +=1;
-        if (currentTeam > 1) { currentTeam = 0; }
+        currentTeam += 1;
+        if (currentTeam > 1) {
+          currentTeam = 0;
+        }
         teamMoney[currentTeam] += bankMoney;
       } else {
-        teamMoney[currentTeam] += (bankMoney + money);
+        teamMoney[currentTeam] += bankMoney + money;
       }
 
       bankMoney = 0;
@@ -171,7 +204,7 @@
       next = true;
     } else {
       if (!match) {
-        strikes += ['☒'];
+        strikes += ["☒"];
 
         displayMessage("Strike!", 1);
 
@@ -180,7 +213,9 @@
           teamDisable[e.teamNumber] = true;
           steal = true;
           currentTeam = e.teamNumber + 1;
-          if (currentTeam > 1) { currentTeam = 0; }
+          if (currentTeam > 1) {
+            currentTeam = 0;
+          }
           displayMessage("Team " + teamNames[currentTeam] + " can steal!", 5);
         }
       } else {
@@ -196,7 +231,9 @@
     }
     teamDisable[currentTeam] = true;
     currentTeam += 1;
-    if (currentTeam > 1) { currentTeam = 0; }
+    if (currentTeam > 1) {
+      currentTeam = 0;
+    }
     teamDisable[currentTeam] = false;
     showPass = false;
 
@@ -217,15 +254,15 @@
       displayMessage("Face off!", 3);
     }
 
-    next        = false;
-    faceOff     = true;
-    steal       = false;
-    showPass    = false;
+    next = false;
+    faceOff = true;
+    steal = false;
+    showPass = false;
     teamDisable = [false, false];
 
     currentTeam = -1;
 
-    guess = '';
+    guess = "";
 
     bankMoney = 0;
 
@@ -237,17 +274,18 @@
 
     qaIndex = 0;
 
-    start       = false;
-    faceOff     = false;
+    start = false;
+    faceOff = false;
     teamDisable = [false, false];
-    steal       = false;
-    showPass    = false;
-    next        = false;
-    end         = false;
+    steal = false;
+    showPass = false;
+    next = false;
+    end = false;
+    teamsetup = false;
 
     currentTeam = -1;
 
-    guess = '';
+    guess = "";
 
     bankMoney = 0;
     teamMoney = [0, 0];
@@ -259,6 +297,58 @@
 
   playSound("theme", 0.1);
 </script>
+
+<Function bind:this={FunctionLib} />
+{#if showMessage}
+  <div class="message" on:click={() => (showMessage = false)}>
+    <div class="message-text">{message}</div>
+  </div>
+{/if}
+<div class="column-center">
+  {#if !start}
+    <div class="column-center">
+      <div class="logo logo-border-animation">
+        <div class="logo-text">Odin Feud</div>
+      </div>
+      <button on:click={startGame}>
+        <span>Start</span>
+      </button>
+    </div>
+  {:else}
+    <Board qa={qas[qaIndex]} {bankMoney} {teamMoney} {strikes} />
+    {#if end}
+      <div class="row-center">
+        <button on:click={restart}><span>Restart</span></button>
+      </div>
+    {:else if next}
+      <div class="row-center">
+        <button on:click={nextRound}><span>Next Round<span /></span></button>
+      </div>
+    {:else}
+      <div class="row-center">
+        <Guess
+          on:guess={(e) => {
+            e.teamNumber = 0;
+            handleGuess(e);
+          }}
+          disable={teamDisable[0]}
+          teamName={teamNames[0]}
+        />
+        <Guess
+          on:guess={(e) => {
+            e.teamNumber = 1;
+            handleGuess(e);
+          }}
+          disable={teamDisable[1]}
+          teamName={teamNames[1]}
+        />
+      </div>
+      {#if showPass}
+        <button on:click={pass}><span>Pass?<span /></span></button>
+      {/if}
+    {/if}
+  {/if}
+</div>
 
 <style>
   .message {
@@ -323,47 +413,3 @@
     color: lightcoral;
   }
 </style>
-
-{#if showMessage}
-  <div class="message" on:click="{ () => showMessage = false }">
-    <div class="message-text">{message}</div>
-  </div>
-{/if}
-<div class="column-center">
-  {#if !start}
-    <div class="column-center">
-      <div class="logo logo-border-animation">
-        <div class="logo-text">
-          Hacker Feud
-        </div>
-      </div>
-      <button on:click={startGame}>
-        <span>Start</span>
-      </button>
-      <button class="github" on:click="{ () => { window.open('https://github.com/lettier/hacker-feud'); } }">
-        <span>GitHub</span>
-      </button>
-    </div>
-  {:else}
-    <Board qa={qas[qaIndex]} {bankMoney} {teamMoney} {strikes}/>
-    {#if end}
-      <div class="row-center">
-        <button on:click={restart}><span>Restart</span></button>
-      </div>
-    {:else}
-      {#if next}
-        <div class="row-center">
-          <button on:click={nextRound}><span>Next Round<span></button>
-        </div>
-      {:else}
-        <div class="row-center">
-          <Guess on:guess="{ e => { e.teamNumber = 0; handleGuess(e); } }" disable={teamDisable[0]} teamName={teamNames[0]}/>
-          <Guess on:guess="{ e => { e.teamNumber = 1; handleGuess(e); } }" disable={teamDisable[1]} teamName={teamNames[1]}/>
-        </div>
-        {#if showPass}
-          <button on:click={pass}><span>Pass?<span></button>
-        {/if}
-      {/if}
-    {/if}
-  {/if}
-</div>

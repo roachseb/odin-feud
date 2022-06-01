@@ -8,7 +8,7 @@ import App from "./App.svelte";
 const app = new App({
   target: document.body,
   props: {
-    teamNames: ["Dunning–Kruger Effect", "Impostor Syndrome"],
+    teamNames: ["Spark Team", "Neputune Team"],
     qas: [
       {
         question: "Which programing language is dead?",

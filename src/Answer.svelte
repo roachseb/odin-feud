@@ -2,10 +2,23 @@
   (C) 2020 David Lettier
   lettier.com
 -->
-
 <script>
   export let answer;
 </script>
+
+<div class="answer {answer.show ? 'answer-animation' : ''}">
+  {#if answer.show}
+    <div>
+      {answer.text}
+    </div>
+    <div>
+      {answer.money}
+    </div>
+  {:else}
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+  {/if}
+</div>
 
 <style>
   .answer {
@@ -26,21 +39,3 @@
     border-radius: 10px;
   }
 </style>
-
-<div class="answer { answer.show ? 'answer-animation' : '' }">
-  {#if answer.show}
-    <div>
-      {answer.text}
-    </div>
-    <div>
-      {answer.money}
-    </div>
-  {:else}
-    <div>
-      &nbsp;
-    </div>
-    <div>
-      &nbsp;
-    </div>
-  {/if}
-</div>
