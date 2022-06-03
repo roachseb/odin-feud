@@ -13,14 +13,13 @@
 
   import { onMount } from "svelte";
 
-  const apiURL =
-    "http://www.7timer.info/bin/api.pl?lon=113.17&lat=23.09&product=astro&output=json";
+  const BaseApiURL = "https://intense-castle-46815.herokuapp.com/";
   export let props = {};
   onMount(async function () {
-    const response = await fetch(apiURL);
+    const response = await fetch(BaseApiURL, { method: "get", mode: "cors" });
     props = await response.json();
+    console.log(props)
   });
-
 
   let qaIndex = 0;
   let FunctionLib;
