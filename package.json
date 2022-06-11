@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "rollup -c",
+    "start": "sirv public --host $HOST --port $PORT",
     "heroku-postbuild": "rollup -c"
   },
   "devDependencies": {
