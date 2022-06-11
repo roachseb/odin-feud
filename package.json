@@ -6,9 +6,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --host $HOST --port $PORT",
-    "heroku-postbuild": "rollup -c"
-  },
+    "start": "sirv public --host $HOST --port $PORT"
+    },
   "devDependencies": {
     "@rollup/plugin-commonjs": "11.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",

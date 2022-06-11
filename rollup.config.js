@@ -56,7 +56,7 @@ export default {
 
 		}),
 
-		!production && serving(),
+		//!production && serving(),
 
 
 		// Watch the `public` directory and refresh the
