@@ -9,6 +9,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 const port = process.env.PORT || 55555;
+const host = process.env.HOST || 'localhost';
 console.log(port);
 dotenv.config();
 
@@ -47,16 +48,12 @@ export default {
 		serve({
 			contentBase: 'public',
 			// Options used in setting up server
-			host: 'localhost',
+			host: host,
 			port: port,
-			//set headers
-			headers: {
-				'Access-Control-Allow-Methods': ['POST', 'GET', 'OPTIONS'],
-			},
 
 		}),
 
-		//!production && serving(),
+		!production && serving(),
 
 
 		// Watch the `public` directory and refresh the
