@@ -9,6 +9,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 const port = process.env.PORT || 55555;
+console.log(port);
 dotenv.config();
 
 export default {
