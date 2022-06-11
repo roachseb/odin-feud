@@ -58,12 +58,12 @@ export default {
 
 		}),
 
-		!production && serving(),
+		//!production && serving(),
 
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload({watch:"public", port:port}),
+		//!production && livereload({watch:"public", port:port}),
 
 		!production && replace({
 			'process.env.proxyUrl': JSON.stringify(process.env.proxyUrl),
