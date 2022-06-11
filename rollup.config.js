@@ -1,10 +1,14 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
 import livereload from 'rollup-plugin-livereload';
+import serve from 'rollup-plugin-serve-proxy';
+import dotenv from 'dotenv';
 import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
+dotenv.config();
 
 export default {
 	input: 'src/main.js',
@@ -38,11 +42,29 @@ export default {
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
-		!production && serve(),
+		!production && serve({
+			contentBase: 'public',
+			// Options used in setting up server
+			host: 'localhost',
+			port: 55555,
+			//set headers
+			headers: {
+				'Access-Control-Allow-Methods': ['POST', 'GET', 'OPTIONS'],
+			},
+
+		}),
+
+		!production && serving(),
+
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload({watch:"public", port:55555}),
+
+		!production && replace({
+			'process.env.proxyUrl': JSON.stringify(process.env.proxyUrl),
+			'process.env.backendUrl': JSON.stringify(process.env.backendUrl),
+		}),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
@@ -53,7 +75,7 @@ export default {
 	}
 };
 
-function serve() {
+function serving() {
 	let started = false;
 
 	return {

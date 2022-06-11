@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':55555/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -1860,7 +1860,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$6 = "src\\App.svelte";
 
-    // (301:0) {#if showMessage}
+    // (302:0) {#if showMessage}
     function create_if_block_4(ctx) {
     	let div1;
     	let div0;
@@ -1873,9 +1873,9 @@ var app = (function () {
     			div0 = element("div");
     			t = text(/*message*/ ctx[10]);
     			attr_dev(div0, "class", "message-text svelte-5ub8ge");
-    			add_location(div0, file$6, 302, 4, 6603);
+    			add_location(div0, file$6, 303, 4, 6619);
     			attr_dev(div1, "class", "message svelte-5ub8ge");
-    			add_location(div1, file$6, 301, 2, 6537);
+    			add_location(div1, file$6, 302, 2, 6553);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div1, anchor);
@@ -1897,14 +1897,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(301:0) {#if showMessage}",
+    		source: "(302:0) {#if showMessage}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (316:2) {:else}
+    // (317:2) {:else}
     function create_else_block$3(ctx) {
     	let t;
     	let current_block_type_index;
@@ -2002,14 +2002,14 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(316:2) {:else}",
+    		source: "(317:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (307:2) {#if !start}
+    // (308:2) {#if !start}
     function create_if_block$2(ctx) {
     	let div2;
     	let div1;
@@ -2030,13 +2030,13 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "Start";
     			attr_dev(div0, "class", "logo-text svelte-5ub8ge");
-    			add_location(div0, file$6, 309, 8, 6797);
+    			add_location(div0, file$6, 310, 8, 6813);
     			attr_dev(div1, "class", "logo logo-border-animation svelte-5ub8ge");
-    			add_location(div1, file$6, 308, 6, 6747);
-    			add_location(span, file$6, 312, 8, 6896);
-    			add_location(button, file$6, 311, 6, 6857);
+    			add_location(div1, file$6, 309, 6, 6763);
+    			add_location(span, file$6, 313, 8, 6912);
+    			add_location(button, file$6, 312, 6, 6873);
     			attr_dev(div2, "class", "column-center svelte-5ub8ge");
-    			add_location(div2, file$6, 307, 4, 6712);
+    			add_location(div2, file$6, 308, 4, 6728);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div2, anchor);
@@ -2061,14 +2061,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(307:2) {#if !start}",
+    		source: "(308:2) {#if !start}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (326:4) {:else}
+    // (327:4) {:else}
     function create_else_block_1(ctx) {
     	let div;
     	let t0;
@@ -2107,7 +2107,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(div, "class", "row-center svelte-5ub8ge");
-    			add_location(div, file$6, 326, 6, 7315);
+    			add_location(div, file$6, 327, 6, 7331);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2167,14 +2167,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(326:4) {:else}",
+    		source: "(327:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (322:19) 
+    // (323:19) 
     function create_if_block_2(ctx) {
     	let div;
     	let button;
@@ -2190,11 +2190,11 @@ var app = (function () {
     			span1 = element("span");
     			t = text("Next Round");
     			span0 = element("span");
-    			add_location(span0, file$6, 323, 53, 7256);
-    			add_location(span1, file$6, 323, 37, 7240);
-    			add_location(button, file$6, 323, 8, 7211);
+    			add_location(span0, file$6, 324, 53, 7272);
+    			add_location(span1, file$6, 324, 37, 7256);
+    			add_location(button, file$6, 324, 8, 7227);
     			attr_dev(div, "class", "row-center svelte-5ub8ge");
-    			add_location(div, file$6, 322, 6, 7177);
+    			add_location(div, file$6, 323, 6, 7193);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div, anchor);
@@ -2218,14 +2218,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(322:19) ",
+    		source: "(323:19) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (318:4) {#if end}
+    // (319:4) {#if end}
     function create_if_block_1(ctx) {
     	let div;
     	let button;
@@ -2238,10 +2238,10 @@ var app = (function () {
     			button = element("button");
     			span = element("span");
     			span.textContent = "Restart";
-    			add_location(span, file$6, 319, 35, 7105);
-    			add_location(button, file$6, 319, 8, 7078);
+    			add_location(span, file$6, 320, 35, 7121);
+    			add_location(button, file$6, 320, 8, 7094);
     			attr_dev(div, "class", "row-center svelte-5ub8ge");
-    			add_location(div, file$6, 318, 6, 7044);
+    			add_location(div, file$6, 319, 6, 7060);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div, anchor);
@@ -2263,14 +2263,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(318:4) {#if end}",
+    		source: "(319:4) {#if end}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (345:6) {#if showPass}
+    // (346:6) {#if showPass}
     function create_if_block_3(ctx) {
     	let button;
     	let span1;
@@ -2284,9 +2284,9 @@ var app = (function () {
     			span1 = element("span");
     			t = text("Pass?");
     			span0 = element("span");
-    			add_location(span0, file$6, 345, 43, 7826);
-    			add_location(span1, file$6, 345, 32, 7815);
-    			add_location(button, file$6, 345, 8, 7791);
+    			add_location(span0, file$6, 346, 43, 7842);
+    			add_location(span1, file$6, 346, 32, 7831);
+    			add_location(button, file$6, 346, 8, 7807);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, button, anchor);
@@ -2307,7 +2307,7 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(345:6) {#if showPass}",
+    		source: "(346:6) {#if showPass}",
     		ctx
     	});
 
@@ -2345,7 +2345,7 @@ var app = (function () {
     			div = element("div");
     			if_block1.c();
     			attr_dev(div, "class", "column-center svelte-5ub8ge");
-    			add_location(div, file$6, 305, 0, 6663);
+    			add_location(div, file$6, 306, 0, 6679);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2433,8 +2433,6 @@ var app = (function () {
     	return block;
     }
 
-    const BaseApiURL = "https://intense-castle-46815.herokuapp.com/";
-
     function playSound(name, volume) {
     	let sound = new Audio(`sounds/${name}.ogg`);
     	sound.volume = volume;
@@ -2459,7 +2457,9 @@ var app = (function () {
     	let { props = {} } = $$props;
 
     	onMount(async function () {
-    		const response = await fetch(BaseApiURL, { method: "get", mode: "cors" });
+    		const proxyUrl = "https://young-gorge-proxy.herokuapp.com/";
+    		const backendUrl = "https://intense-castle-46815.herokuapp.com/";
+    		const response = await fetch(proxyUrl + backendUrl + "interest/jackal");
     		$$invalidate(19, props = await response.json());
     		console.log(props);
     	});
@@ -2740,7 +2740,6 @@ var app = (function () {
     		qas,
     		teamNames,
     		onMount,
-    		BaseApiURL,
     		props,
     		qaIndex,
     		FunctionLib,

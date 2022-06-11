@@ -13,10 +13,11 @@
 
   import { onMount } from "svelte";
 
-  const BaseApiURL = "https://intense-castle-46815.herokuapp.com/";
   export let props = {};
   onMount(async function () {
-    const response = await fetch(BaseApiURL, { method: "get", mode: "cors" });
+    const proxyUrl = process.env.proxyUrl;
+    const backendUrl = process.env.backendUrl
+    const response = await fetch(proxyUrl+backendUrl+"interest/jackal");
     props = await response.json();
     console.log(props)
   });
