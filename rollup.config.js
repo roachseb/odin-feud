@@ -44,7 +44,7 @@ export default {
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
-		!production && serve({
+		serve({
 			contentBase: 'public',
 			// Options used in setting up server
 			host: 'localhost',
