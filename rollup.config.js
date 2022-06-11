@@ -7,11 +7,12 @@ import serve from 'rollup-plugin-serve-proxy';
 import dotenv from 'dotenv';
 import { terser } from 'rollup-plugin-terser';
 
+dotenv.config();
+
 const production = !process.env.ROLLUP_WATCH;
 const port = process.env.PORT || 55555;
 const host = process.env.HOST || 'localhost';
 console.log(port);
-dotenv.config();
 
 export default {
 	input: 'src/main.js',
@@ -45,11 +46,15 @@ export default {
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
-		serve({
+		!production && serve({
 			contentBase: 'public',
 			// Options used in setting up server
 			host: host,
 			port: port,
+			//set headers
+			headers: {
+				'Access-Control-Allow-Methods': ['POST', 'GET', 'OPTIONS'],
+			},
 
 		}),
 
