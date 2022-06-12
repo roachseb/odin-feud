@@ -17,7 +17,7 @@
   onMount(async function () {
     const proxyUrl = process.env.proxyUrl;
     const backendUrl = process.env.backendUrl
-    const response = await fetch(proxyUrl+backendUrl+"interest/jackal");
+    const response = await fetch(proxyUrl+backendUrl+"interest/none");
     props = await response.json();
     console.log(props)
   });
