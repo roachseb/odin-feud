@@ -65,7 +65,7 @@ export default {
 		// browser on changes when not in production
 		!production && livereload({watch:"public", port:port}),
 
-		!production && replace({
+		replace({
 			'process.env.proxyUrl': JSON.stringify(process.env.proxyUrl),
 			'process.env.backendUrl': JSON.stringify(process.env.backendUrl),
 		}),
